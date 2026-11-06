@@ -9,6 +9,18 @@
         <p class="text-muted">Listado de citas registradas en el sistema</p>
     </div>
 
+    <!-- 🔍 FORMULARIO DE BÚSQUEDA -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-6">
+            <form method="GET" action="{% url 'buscar_Cita' %}" class="input-group shadow-sm">
+                <input type="text" name="nombre" value="{{ query }}" class="form-control" placeholder="Buscar cita por nombre de cliente...">
+                <button class="btn btn-outline-pink" type="submit" style="background-color: #ff69b4; color: white; border: none;">
+                    Buscar Cita
+                </button>
+            </form>
+        </div>
+    </div>
+
     <div class="card card-dashboard p-4 border-0 shadow-sm rounded-4">
         {% if citas %}
             <div class="table-responsive">
@@ -21,32 +33,38 @@
                             <th>Cliente</th>
                             <th>Servicio</th>
                             <th>Especialista</th>
-                            <th>Acciones</th> <!-- Columna para el botón -->
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for cita in citas %}
                             <tr>
-                                <td class="fw-semibold text-dark">{{ cita.fecha_hora }}</td>
-                                <td><span class="badge bg-secondary">{{ cita.estado }}</span></td>
-                                <td>{{ cita.notas|default:"Sin notas" }}</td>
+                                <td>{{ cita.fecha_hora }}</td>
+                                <td>{{ cita.estado }}</td>
+                                <td>{{ cita.notas }}</td>
                                 <td>{{ cita.cliente_rel }}</td>
                                 <td>{{ cita.servicio_rel }}</td>
                                 <td>{{ cita.especialista_rel }}</td>
                                 <td>
-                                    <!-- Botón dinámico de edición con el ID (pk) de la cita -->
-                                    <a href="{% url 'editar_cita' cita.pk %}" class="btn btn-sm btn-primary">
-                                        Editar
-                                    </a>
-
-                                    <a href="{% url 'eliminar_cita' cita.pk %}" class="btn btn-sm btn-danger mb-1">
-                                      Eliminar
-                                    </a>
+                                    <!-- Botones de Editar y Eliminar -->
+                                    <div class="d-flex gap-2">
+                                        <a href="{% url 'editar_cita' cita.id %}" class="btn btn-sm btn-primary">Editar</a>
+                                        <a href="{% url 'eliminar_cita' cita.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+                                    </div>
                                 </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="7" class="text-center text-muted py-4">No se encontraron citas registradas.</td>
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
+            </div>
+        {% elif query %}
+            <!-- Mensaje si se buscó algo pero no arrojó resultados -->
+            <div class="text-center py-5">
+                <p class="text-warning fw-bold mb-0">No se encontró ninguna cita registrada para "{{ query }}".</p>
             </div>
         {% else %}
             <div class="text-center py-5">

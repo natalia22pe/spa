@@ -1,17 +1,50 @@
 {% extends 'spaap/base.html' %}
 
-{% load static %} #css 
+{% load static %}
 
 {% block title %}Inicio - Nail Spa{% endblock %}
 
 {% block content %}
+
 <!-- Banner Principal -->
 <header class="hero-section text-white text-center py-5" style="background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);">
-    <div class="container py-5">
+    <div class="container py-4">
         <h1 class="display-4 fw-bold mb-3">El cuidado perfecto para tus manos y pies</h1>
         <p class="lead mb-4">Disfruta de las últimas tendencias en manicure, pedicure y diseño de uñas acrílicas.</p>
-        <a href="{% url 'servicios' %}" class="btn btn-light btn-lg text-pink fw-semibold px-4 shadow">Ver Nuestros Servicios</a>
-        <a href="{% url 'crea_Cita' %}" class="btn btn-primary">Agendar Cita</a>
+        
+        <div class="mb-4">
+            <a href="{% url 'servicios' %}" class="btn btn-light btn-lg text-pink fw-semibold px-4 me-2 shadow">Ver Nuestros Servicios</a>
+            <a href="{% url 'crea_Cita' %}" class="btn btn-primary btn-lg shadow">Agendar Cita</a>
+        </div>
+
+        <!-- Botón para ir al Mapa Interactivo -->
+        <div class="text-center my-4">
+            <a href="{% url 'mapa' %}" class="btn btn-lg text-white fw-bold shadow-sm px-5 py-3" style="background-color: #d63384; border-radius: 50px;">
+                📍 Ver Nuestras Sedes y Ubicaciones
+            </a>
+        </div>
+
+        <!-- 🔍 FORMULARIO DE BÚSQUEDA CORREGIDO (ENVÍA POR GET A BUSCAR_CITA) -->
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-6">
+                <form method="GET" action="{% url 'buscar_Cita' %}" class="input-group shadow-sm">
+                    <input type="text" name="nombre" class="form-control" placeholder="Ingresa el nombre del cliente" value="{{ query }}" required>
+                    <button type="submit" class="btn text-white fw-bold" style="background-color: #d63384; border: none;">
+                        Buscar Cita
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Mostrar los mensajes de error / aviso de Django si existen -->
+        {% if messages %}
+            <ul class="messages list-unstyled mt-3">
+                {% for message in messages %}
+                    <li class="alert alert-info d-inline-block px-4 py-2 mb-0">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
     </div>
 </header>
 

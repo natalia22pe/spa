@@ -1,0 +1,91 @@
+{% extends 'spaap/base.html' %}
+
+{% block title %}Ubicación y Sucursales - Glamour Nail Spa{% endblock %}
+
+{% block content %}
+<!-- Hoja de estilos de Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<div class="container my-5">
+    <div class="text-center mb-4">
+        <h2 class="fw-bold" style="color: #d63384;">Nuestras Ubicaciones</h2>
+        <p class="text-muted">Encuentra la sede del spa o consulta las direcciones registradas</p>
+    </div>
+
+    <!-- Barra de Búsqueda -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-lg-8">
+            <form method="GET" action="{% url 'mapa' %}" class="input-group shadow-sm">
+                <input type="text" name="q" class="form-control form-control-lg border-0" placeholder="Buscar por nombre o dirección..." value="{{ request.GET.q }}">
+                <button class="btn px-4 text-white fw-bold" style="background-color: #d63384;" type="submit">Buscar Ubicación</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Columna Izquierda: Lista de Sedes Registradas -->
+        <div class="col-lg-5 mb-4">
+            <div class="card p-4 shadow-sm border-0 rounded-4">
+                <h5 class="fw-bold mb-3" style="color: #d63384;">📍 Sedes Registradas</h5>
+                <div style="max-height: 400px; overflow-y: auto;">
+                    <ul class="list-group list-group-flush">
+                        {% for local in locales_qs %}
+                            <li class="list-group-item bg-transparent border-bottom py-3">
+                                <h6 class="fw-bold mb-1 text-dark">{{ local.nombre }}</h6>
+                                <p class="text-muted small mb-2">{{ local.direccion }}</p>
+                                {% if local.lat and local.lng %}
+                                    <span class="badge bg-success">Geocodificado</span>
+                                {% else %}
+                                    <span class="badge bg-warning text-dark">Sin coordenadas</span>
+                                {% endif %}
+                            </li>
+                        {% empty %}
+                            <li class="list-group-item bg-transparent text-center text-muted">
+                                No se encontraron sedes registradas. 
+                                <br><a href="/admin/" class="small text-danger fw-bold">Registrar en Admin</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Columna Derecha: El Mapa Interactivo -->
+        <div class="col-lg-7">
+            <div class="card p-2 shadow-sm border-0 rounded-4">
+                <!-- CONTENEDOR DEL MAPA RESTAURADO -->
+                <div id="mapa-spa" style="height: 450px; width: 100%; border-radius: 12px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Script de Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+    // Inicializamos el mapa centrado en Soacha/Bogotá
+    var map = L.map('mapa-spa').setView([4.5816, -74.2163], 13);
+
+    // Capa base profesional de Esri (Libre, sin marcas de agua ni API Key)
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 19,
+        attribution: 'Tiles &copy; Esri'
+    }).addTo(map);
+
+    // Cargamos los datos seguros desde la vista de Django
+    var localesData = JSON.parse('{{ locales|safe }}');
+
+    // Dibujamos cada marcador en el mapa
+    localesData.forEach(function(local) {
+        if (local.lat && local.lng) {
+            var marker = L.marker([local.lat, local.lng]).addTo(map);
+            marker.bindPopup("<b>" + local.nombre + "</b><br>" + local.direccion);
+        }
+    });
+
+    // Forzamos al mapa a redibujar sus dimensiones correctamente
+    setTimeout(function() {
+        map.invalidateSize();
+    }, 200);
+</script>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'spaap/base.html' %}
+
+{% block title %}Reserva tu Cita - Glamour Nail Spa{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="text-center mb-4">
+        <h2 class="fw-bold" style="color: #d63384;">Reserva tu Cita</h2>
+        <p class="text-muted">Elige el mejor horario para consentirte</p>
+    </div>
+
+    <div class="row">
+        <!-- Columna Izquierda: Formulario completo de la cita -->
+        <div class="col-lg-6 mb-4">
+            <div class="card p-4 shadow-sm border-0 rounded-4">
+                <form method="POST">
+                    {% csrf_token %}
+                    
+                    <!-- Esto renderiza automáticamente todos los campos de tu CitaForm -->
+                    {{ form.as_p }}
+                    
+                    <!-- ENLACE DE REGISTRO RÁPIDO PARA CLIENTES NUEVOS -->
+                    <div class="mb-3 text-end">
+                        <small class="text-muted">¿No encuentras al cliente en la lista?</small>
+                        <a href="{% url 'registrar_cliente' %}" class="fw-bold text-decoration-none" style="color: #d63384;">
+                            + Registrar nuevo cliente
+                        </a>
+                    </div>
+                    
+                    <button type="submit" class="btn w-100 text-white mt-2" style="background-color: #ff69b4; border: none;">
+                        Guardar Cita
+                    </button>
+                    
+                </form>
+            </div>
+        </div>
+
+        <!-- Columna Derecha: Lista de festivos de la API -->
+        <div class="col-lg-6">
+            <div class="card p-4 shadow-sm border-0 rounded-4" style="background-color: #fff0f5;">
+                <h5 class="fw-bold mb-3" style="color: #d63384;">📅 Días Festivos (No Laborables)</h5>
+                <p class="text-muted small">Ten en cuenta estas fechas oficiales de la API en las que el spa no labora al programar tu cita:</p>
+                
+                <div style="max-height: 380px; overflow-y: auto;">
+                    <ul class="list-group list-group-flush bg-transparent">
+                        {% for festivo in festivos %}
+                            <li class="list-group-item bg-transparent d-flex justify-content-between align-items-center">
+                                <span><strong>{{ festivo.date }}</strong></span>
+                                <span class="text-muted small">{{ festivo.localName }}</span>
+                            </li>
+                        {% empty %}
+                            <li class="list-group-item bg-transparent text-center">No se pudieron cargar los festivos.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
