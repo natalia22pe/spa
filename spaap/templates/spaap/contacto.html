@@ -3,51 +3,68 @@
 {% block title %}Contacto - Nail Spa{% endblock %}
 
 {% block content %}
-<div class="container my-5">
-    <div class="row g-5 align-items-center">
-        <!-- Información de Contacto -->
-        <div class="col-md-6">
-            <h1 class="fw-bold text-pink mb-4">Contáctanos & Visítanos</h1>
+
+<div class="container my-5 py-4">
+    <div class="row align-items-center g-5">
+        
+        <!-- Columna Izquierda: Información de Contacto -->
+        <div class="col-lg-6">
+            <h1 class="fw-bold mb-3" style="color: #2b2d42; letter-spacing: -0.5px;">Contáctanos & Visítanos</h1>
             <p class="text-muted mb-4">Estamos listos para atenderte y darle el mejor cuidado a tus uñas. Escríbenos directamente o agenda tu cita previa.</p>
+            
+            <div class="d-flex flex-column gap-3 mb-4">
+                <div class="d-flex align-items-center bg-white p-3 rounded-4 shadow-sm border-0">
+                    <div class="fs-3 me-3 text-pink">📱</div>
+                    <div>
+                        <span class="d-small text-muted text-uppercase fw-semibold" style="font-size: 0.75rem;">WhatsApp / Teléfono</span>
+                        <h5 class="mb-0 fw-bold text-dark">+57 300 964 8715</h5>
+                    </div>
+                </div>
 
-            <ul class="list-unstyled space-y-3">
-                <li class="mb-3">
-                    <strong>📱 WhatsApp / Teléfono:</strong> 
-                    <br>
-                    <a href="https://wa.me/573009648715" target="_blank" class="text-decoration-none text-dark fs-5 fw-semibold">+57 300 964 8715</a>
-                </li>
-                <li class="mb-3">
-                    <strong>🕒 Horario de Atención:</strong>
-                    <br>Lunes a Sábado: 8:00 AM - 7:00 PM
-                </li>
-                <li class="mb-3">
-                    <strong>📍 Dirección:</strong>
-                    <br>Atención en Spa / A Domicilio
-                </li>
-            </ul>
+                <div class="d-flex align-items-center bg-white p-3 rounded-4 shadow-sm border-0">
+                    <div class="fs-3 me-3 text-pink">🕒</div>
+                    <div>
+                        <span class="d-small text-muted text-uppercase fw-semibold" style="font-size: 0.75rem;">Horario de Atención</span>
+                        <h6 class="mb-0 fw-bold text-dark">Lunes a Sábado: 8:00 AM - 7:00 PM</h6>
+                    </div>
+                </div>
 
-            <a href="https://wa.me/573009648715?text=Hola!%20Deseo%20obtener%20más%20información%20sobre%20sus%20servicios" 
+                <div class="d-flex align-items-center bg-white p-3 rounded-4 shadow-sm border-0">
+                    <div class="fs-3 me-3 text-pink">📍</div>
+                    <div>
+                        <span class="d-small text-muted text-uppercase fw-semibold" style="font-size: 0.75rem;">Dirección</span>
+                        <h6 class="mb-0 fw-bold text-dark">Atención en Spa / A Domicilio</h6>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón de WhatsApp Principal -->
+            <a href="https://wa.me/573009648715?text=Hola,%20quiero%20más%20información%20sobre%20los%20servicios%20del%20Spa" 
                target="_blank" 
-               class="btn btn-success btn-lg rounded-pill shadow-sm px-4 mt-3">
-               💬 Hablar por WhatsApp
+               class="btn text-white fw-semibold px-4 py-3 rounded-pill shadow w-100"
+               style="background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); border: none;">
+               💬 Hablar por WhatsApp Directamente
             </a>
         </div>
 
-        <!-- Tarjeta de Bienvenida / Mapa promocional -->
-        <div class="col-md-6">
-            <div class="card border-0 shadow-sm rounded-4 p-5 text-center bg-light">
-                <h3 class="fw-bold mb-3">💖 Agenda Tu Cita Hoy</h3>
-                <p class="text-muted">Haz clic en el botón de abajo para ser redirigida instantáneamente a nuestro chat de atención personalizada.</p>
-                <div class="my-4">
-                    <span style="font-size: 4rem;">📲</span>
+        <!-- Columna Derecha: Tarjeta de Acción Rápida -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-lg p-5 rounded-4 bg-white text-center position-relative overflow-hidden">
+                <div class="mb-3" style="font-size: 3rem;">💖</div>
+                <h3 class="fw-bold mb-2" style="color: #2b2d42;">Agenda Tu Cita Hoy</h3>
+                <p class="text-muted small mb-4">Haz clic en el botón de abajo para ser redirigida instantáneamente a nuestro chat de atención personalizada.</p>
+                
+                <div class="d-grid">
+                    <a href="https://wa.me/573009648715?text=Hola,%20quiero%20agendar%20una%20cita%20en%20el%20Spa" 
+                       target="_blank" 
+                       class="btn text-white fw-bold py-3 rounded-pill shadow"
+                       style="background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%); border: none;">
+                       ✨ Escribir al 300 964 8715
+                    </a>
                 </div>
-                <a href="https://wa.me/573009648715?text=Hola,%20me%20gustaría%20agendar%20una%20cita" 
-                   target="_blank" 
-                   class="btn btn-danger btn-lg rounded-pill fw-bold">
-                   Escribir al 300 964 8715
-                </a>
             </div>
         </div>
+
     </div>
 </div>
 {% endblock %}

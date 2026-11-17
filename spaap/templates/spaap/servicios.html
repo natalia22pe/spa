@@ -3,55 +3,71 @@
 {% block title %}Servicios y Precios - Nail Spa{% endblock %}
 
 {% block content %}
-<div class="container my-5">
+<div class="container my-5 py-3">
     <div class="text-center mb-5">
-        <h1 class="fw-bold text-pink">✨ Nuestros Servicios & Tarifas</h1>
-        <p class="text-muted">Elige el tratamiento ideal para consentir tus manos y pies</p>
+        <h1 class="fw-bold" style="color: #2b2d42; letter-spacing: -0.5px;">✨ Nuestros Servicios & Tarifas</h1>
+        <p class="text-muted fs-5">Elige el tratamiento ideal para consentir tus manos y pies</p>
     </div>
 
     <div class="row g-4">
         <!-- Servicio 1 -->
         <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm rounded-4 text-center p-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 text-center p-4 position-relative overflow-hidden" style="transition: all 0.3s ease;">
                 <div class="fs-1 mb-3">💅</div>
-                <h4 class="fw-bold">Manicure Semipermanente</h4>
-                <p class="text-muted small">Limpieza profunda, exfoliación, hidratación y esmaltado de larga duración.</p>
-                <h3 class="text-pink fw-bold my-3">$45.000</h3>
-                <a href="https://wa.me/573009648715?text=Hola,%20quiero%20agendar%20una%20cita%20para%20Manicure%20Semipermanente" 
-                   target="_blank" 
-                   class="btn btn-outline-danger rounded-pill fw-semibold mt-auto">
-                   Agendar por WhatsApp
-                </a>
+                <h4 class="fw-bold text-dark">Manicure Semipermanente</h4>
+                <p class="text-muted small px-2">Limpieza profunda, exfoliación, hidratación y esmaltado de larga duración.</p>
+                <div class="my-3">
+                    <span class="fs-2 fw-bold" style="color: #d81b60;">$45.000</span>
+                </div>
+                <div class="mt-auto pt-3">
+                    <a href="https://wa.me/573009648715?text=Hola,%20quiero%20agendar%20una%20cita%20para%20Manicure%20Semipermanente" 
+                       target="_blank" 
+                       class="btn text-white w-100 rounded-pill fw-semibold py-2 shadow-sm"
+                       style="background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); border: none;">
+                       💬 Agendar por WhatsApp
+                    </a>
+                </div>
             </div>
         </div>
 
-        <!-- Servicio 2 -->
+        <!-- Servicio 2 (Destacado / Popular) -->
         <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm rounded-4 text-center p-4">
+            <div class="card h-100 border-0 shadow rounded-4 text-center p-4 position-relative overflow-hidden" style="transform: translateY(-5px); border: 2px solid #ff758c !important; transition: all 0.3s ease;">
+                <div class="badge bg-danger text-white position-absolute top-0 end-0 m-3 px-3 py-1 rounded-pill" style="background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%) !important; font-size: 0.75rem;">¡Más Popular!</div>
                 <div class="fs-1 mb-3">💎</div>
-                <h4 class="fw-bold">Uñas Acrílicas / Gel</h4>
-                <p class="text-muted small">Extensión de uñas con técnica profesional, esculpidas con diseños personalizados.</p>
-                <h3 class="text-pink fw-bold my-3">$85.000</h3>
-                <a href="https://wa.me/573009648715?text=Hola,%20quiero%20agendar%20una%20cita%20para%20Uñas%20Acrílicas" 
-                   target="_blank" 
-                   class="btn btn-outline-danger rounded-pill fw-semibold mt-auto">
-                   Agendar por WhatsApp
-                </a>
+                <h4 class="fw-bold text-dark">Uñas Acrílicas / Gel</h4>
+                <p class="text-muted small px-2">Extensión de uñas con técnica profesional, esculpidas con diseños personalizados.</p>
+                <div class="my-3">
+                    <span class="fs-2 fw-bold" style="color: #d81b60;">$85.000</span>
+                </div>
+                <div class="mt-auto pt-3">
+                    <a href="https://wa.me/573009648715?text=Hola,%20quiero%20agendar%20una%20cita%20para%20Uñas%20Acrílicas" 
+                       target="_blank" 
+                       class="btn text-white w-100 rounded-pill fw-semibold py-2 shadow"
+                       style="background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); border: none;">
+                       💬 Agendar por WhatsApp
+                    </a>
+                </div>
             </div>
         </div>
 
         <!-- Servicio 3 -->
         <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm rounded-4 text-center p-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 text-center p-4 position-relative overflow-hidden" style="transition: all 0.3s ease;">
                 <div class="fs-1 mb-3">🦶</div>
-                <h4 class="fw-bold">Pedicure Spa</h4>
-                <p class="text-muted small">Tratamiento relajante para tus pies con sales marinas, mascarilla y esmaltado.</p>
-                <h3 class="text-pink fw-bold my-3">$50.000</h3>
-                <a href="https://wa.me/573009648715?text=Hola,%20quiero%20agendar%20una%20cita%20para%20Pedicure%20Spa" 
-                   target="_blank" 
-                   class="btn btn-outline-danger rounded-pill fw-semibold mt-auto">
-                   Agendar por WhatsApp
-                </a>
+                <h4 class="fw-bold text-dark">Pedicure Spa</h4>
+                <p class="text-muted small px-2">Tratamiento relajante para tus pies con sales marinas, mascarilla y esmaltado.</p>
+                <div class="my-3">
+                    <span class="fs-2 fw-bold" style="color: #d81b60;">$50.000</span>
+                </div>
+                <div class="mt-auto pt-3">
+                    <a href="https://wa.me/573009648715?text=Hola,%20quiero%20agendar%20una%20cita%20para%20Pedicure%20Spa" 
+                       target="_blank" 
+                       class="btn text-white w-100 rounded-pill fw-semibold py-2 shadow-sm"
+                       style="background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); border: none;">
+                       💬 Agendar por WhatsApp
+                    </a>
+                </div>
             </div>
         </div>
     </div>

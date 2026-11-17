@@ -1,0 +1,49 @@
+{% extends 'spaap/base.html' %}
+{% load static %}
+
+{% block title %}Registro - Nail Spa{% endblock %}
+
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center my-4" style="min-height: 80vh;">
+    <div class="col-md-6 col-lg-5">
+        <div class="card border-0 shadow-lg p-4 p-md-4 rounded-4 bg-white">
+            
+            <!-- Encabezado -->
+            <div class="text-center mb-3">
+                <span class="badge px-3 py-1 rounded-pill mb-2 text-white" style="background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%); font-size: 0.75rem;">Nuevo Usuario</span>
+                <h2 class="fw-bold text-dark mb-1" style="letter-spacing: -0.5px;">Crear Cuenta</h2>
+                <p class="text-muted small">Regístrate seleccionando tu rol para empezar.</p>
+            </div>
+
+            <!-- Formulario -->
+            <form method="POST">
+                {% csrf_token %}
+                
+                {{ form.non_field_errors }}
+
+                {% for field in form %}
+                    <div class="mb-3">
+                        <label for="{{ field.id_for_label }}" class="form-label fw-semibold small text-secondary">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="text-danger small mt-1">{{ field.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <div class="d-grid mt-4 mb-3">
+                    <button type="submit" class="btn text-white fw-semibold py-2 rounded-pill shadow-sm" style="background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%); border: none;">
+                        Registrarse
+                    </button>
+                </div>
+
+                <div class="d-grid text-center">
+                    <a href="{% url 'inicio' %}" class="text-muted small text-decoration-none">← Volver al Inicio</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

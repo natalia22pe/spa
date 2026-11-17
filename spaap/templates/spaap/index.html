@@ -7,71 +7,116 @@
 {% block content %}
 
 <!-- Banner Principal -->
-<header class="hero-section text-white text-center py-5" style="background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);">
-    <div class="container py-4">
-        <h1 class="display-4 fw-bold mb-3">El cuidado perfecto para tus manos y pies</h1>
-        <p class="lead mb-4">Disfruta de las últimas tendencias en manicure, pedicure y diseño de uñas acrílicas.</p>
-        
-        <div class="mb-4">
-            <a href="{% url 'servicios' %}" class="btn btn-light btn-lg text-pink fw-semibold px-4 me-2 shadow">Ver Nuestros Servicios</a>
-            <a href="{% url 'crea_Cita' %}" class="btn btn-primary btn-lg shadow">Agendar Cita</a>
-        </div>
+<header class="hero-spa text-white text-center">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h1 class="display-4 fw-bold mb-3 text-white">El cuidado perfecto para tus manos y pies</h1>
+                <p class="lead mb-4 text-white-50">Disfruta de las últimas tendencias en manicure, pedicure y diseño de uñas acrílicas con la mejor atención profesional.</p>
+                
+                <div class="mb-4">
+                    <a href="{% url 'servicios' %}" class="btn btn-light btn-lg fw-semibold px-4 me-2 shadow-sm">Ver Nuestros Servicios</a>
+                    <a href="{% url 'crea_Cita' %}" class="btn btn-primary btn-lg fw-semibold px-4 shadow">Agendar Cita</a>
+                </div>
 
-        <!-- Botón para ir al Mapa Interactivo -->
-        <div class="text-center my-4">
-            <a href="{% url 'mapa' %}" class="btn btn-lg text-white fw-bold shadow-sm px-5 py-3" style="background-color: #d63384; border-radius: 50px;">
-                📍 Ver Nuestras Sedes y Ubicaciones
-            </a>
-        </div>
+                <!-- Botón para ir al Mapa Interactivo -->
+                <div class="text-center my-4">
+                    <a href="{% url 'mapa' %}" class="btn btn-lg text-white fw-bold shadow px-5 py-3" style="background-color: #d63384; border-radius: 50px;">
+                        📍 Ver Nuestras Sedes y Ubicaciones
+                    </a>
+                </div>
 
-        <!-- 🔍 FORMULARIO DE BÚSQUEDA CORREGIDO (ENVÍA POR GET A BUSCAR_CITA) -->
-        <div class="row justify-content-center mt-4">
-            <div class="col-md-6">
-                <form method="GET" action="{% url 'buscar_Cita' %}" class="input-group shadow-sm">
-                    <input type="text" name="nombre" class="form-control" placeholder="Ingresa el nombre del cliente" value="{{ query }}" required>
-                    <button type="submit" class="btn text-white fw-bold" style="background-color: #d63384; border: none;">
-                        Buscar Cita
-                    </button>
-                </form>
+                <!-- 🔍 FORMULARIO DE BÚSQUEDA -->
+                <div class="row justify-content-center mt-4">
+                    <div class="col-md-8 col-lg-6">
+                        <form method="GET" action="{% url 'buscar_Cita' %}" class="input-group shadow-lg rounded-pill overflow-hidden p-1 bg-white">
+                            <input type="text" name="nombre" class="form-control border-0 shadow-none px-3" placeholder="Ingresa el nombre del cliente" value="{{ query }}" required>
+                            <button type="submit" class="btn text-white fw-bold px-4 rounded-pill" style="background-color: #d63384;">
+                                Buscar Cita
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Mensajes de Django -->
+                {% if messages %}
+                    <ul class="messages list-unstyled mt-3">
+                        {% for message in messages %}
+                            <li class="alert alert-info d-inline-block px-4 py-2 mb-0 shadow-sm">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
             </div>
         </div>
-
-        <!-- Mostrar los mensajes de error / aviso de Django si existen -->
-        {% if messages %}
-            <ul class="messages list-unstyled mt-3">
-                {% for message in messages %}
-                    <li class="alert alert-info d-inline-block px-4 py-2 mb-0">{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-
     </div>
 </header>
 
-<!-- Sección de Bienvenida / Características -->
+<!-- Sección 1: Características Principales -->
 <div class="container my-5 py-4">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-dark">¿Por qué elegirnos?</h2>
+        <p class="text-muted">Nos enfocamos en brindarte una experiencia única de bienestar y belleza.</p>
+    </div>
     <div class="row text-center g-4">
         <div class="col-md-4">
             <div class="p-4 border rounded-4 shadow-sm bg-white h-100">
-                <h3>✨</h3>
+                <div class="fs-1">✨</div>
                 <h5 class="fw-bold mt-3">Diseños Exclusivos</h5>
                 <p class="text-muted small">Efecto espejo, uñas esculpidas, press-on y nail art personalizado a tu estilo.</p>
             </div>
         </div>
         <div class="col-md-4">
             <div class="p-4 border rounded-4 shadow-sm bg-white h-100">
-                <h3>🌿</h3>
+                <div class="fs-1">🌿</div>
                 <h5 class="fw-bold mt-3">Productos de Calidad</h5>
                 <p class="text-muted small">Cuidamos la salud de tus uñas con esmaltes semipermanentes hipoalergénicos.</p>
             </div>
         </div>
         <div class="col-md-4">
             <div class="p-4 border rounded-4 shadow-sm bg-white h-100">
-                <h3>💖</h3>
+                <div class="fs-1">💖</div>
                 <h5 class="fw-bold mt-3">Atención Profesional</h5>
                 <p class="text-muted small">Un espacio diseñado para tu relajación, comodidad y bienestar total.</p>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Sección 2: Bloque de Estadísticas / Confianza -->
+<div class="bg-white py-5 border-top border-bottom">
+    <div class="container">
+        <div class="row text-center g-4">
+            <div class="col-md-3 col-6">
+                <h2 class="fw-bold" style="color: #d81b60;">+500</h2>
+                <p class="text-muted small mb-0">Clientas Satisfechas</p>
+            </div>
+            <div class="col-md-3 col-6">
+                <h2 class="fw-bold" style="color: #d81b60;">100%</h2>
+                <p class="text-muted small mb-0">Esmaltes Hipoalergénicos</p>
+            </div>
+            <div class="col-md-3 col-6">
+                <h2 class="fw-bold" style="color: #d81b60;">+3 Años</h2>
+                <p class="text-muted small mb-0">De Experiencia y Pasión</p>
+            </div>
+            <div class="col-md-3 col-6">
+                <h2 class="fw-bold" style="color: #d81b60;">24/7</h2>
+                <p class="text-muted small mb-0">Plataforma de Reservas</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sección 3: Llamado a la Acción Final (CTA) -->
+<div class="container my-5 py-4">
+    <div class="card border-0 shadow-lg rounded-4 p-5 text-white text-center" style="background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);">
+        <div class="py-3">
+            <h2 class="fw-bold mb-3 text-white">¿Lista para consentir tus manos hoy?</h2>
+            <p class="lead mb-4 text-white-50">Reserva tu espacio en pocos clics y descubre el arte en tus uñas.</p>
+            <a href="{% url 'crea_Cita' %}" class="btn btn-light btn-lg fw-bold px-5 py-3 rounded-pill shadow" style="color: #d81b60;">
+                📅 Agendar Mi Cita Ahora
+            </a>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

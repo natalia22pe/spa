@@ -1,0 +1,60 @@
+{% extends 'spaap/base.html' %}
+{% load static %}
+
+{% block title %}Registro - Nail Spa{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 col-lg-5">
+            <div class="card border-0 shadow-lg rounded-4 p-4 text-white" style="background-color: #13033b !important;">
+                <div class="card-body">
+                    
+                    <div class="text-center mb-4">
+                        <span class="badge bg-danger bg-opacity-25 text-white px-3 py-2 rounded-pill fw-semibold mb-2">Nuevo Usuario</span>
+                        <h2 class="fw-bold text-white">Crear Cuenta</h2>
+                        <p class="text-white-50 small">Regístrate para empezar a gestionar tus citas en el Spa.</p>
+                    </div>
+
+                    <!-- Mensajes de alerta -->
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-warning alert-dismissible fade show text-dark" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="POST">
+                        {% csrf_token %}
+                        
+                        <!-- Recorremos los campos del formulario de Django -->
+                        {% for field in form %}
+                            <div class="mb-3 text-start">
+                                <label class="form-label text-white-50 fw-semibold small">{{ field.label }}</label>
+                                {{ field }}
+                                {% if field.errors %}
+                                    <div class="text-danger small mt-1">
+                                        {{ field.errors|striptags }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-light text-danger rounded-pill fw-bold py-2 shadow-sm">
+                                Registrarse
+                            </button>
+                            <a href="{% url 'login' %}" class="btn btn-outline-light rounded-pill py-2 small fw-semibold">
+                                ¿Ya tienes cuenta? Inicia sesión
+                            </a>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

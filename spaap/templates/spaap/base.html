@@ -10,9 +10,9 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- CSS Personalizado -->
-    <link rel="stylesheet" href="{% static 'spaap/css/styles.css' %}">
-</head>
-<body>
+     
+    <link rel="stylesheet" href="{% static 'spaap/css/estilos.css' %}"></head>
+    <body>
 
     <!-- MENÚ DE NAVEGACIÓN REAL -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
@@ -22,17 +22,39 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav gap-3">
+                <ul class="navbar-nav gap-3 align-items-center">
                     <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'servicios' %}">Servicios y Precios</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'citas' %}">Ver Citas (Admin)</a></li>
                     <li class="nav-item"><a class="btn btn-primary btn-sm px-3 text-white" href="{% url 'contacto' %}">Contacto</a></li>
+                    
+                    <!-- SECCIÓN DE AUTENTICACIÓN -->
+                    <li class="nav-item ms-lg-2">
+                        {% if user.is_authenticated %}
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="badge bg-secondary px-3 py-2 rounded-pill">
+                                    👤 {{ user.username }} 
+                                    {% for group in user.groups.all %}
+                                        ({{ group.name }})
+                                    {% endfor %}
+                                </span>
+                                <form action="{% url 'logout' %}" method="post" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill px-3">Cerrar</button>
+                                </form>
+                            </div>
+                        {% else %}
+                            <div class="d-flex gap-2">
+                                <a href="{% url 'login' %}" class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-bold">Iniciar Sesión</a>
+                                <a href="{% url 'registro' %}" class="btn btn-primary btn-sm rounded-pill px-3 text-white fw-semibold">Registrarse</a>
+                            </div>
+                        {% endif %}
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- CONTENIDO DINÁMICO DE CADA PÁGINA -->
     <main>
         {% block content %}
         {% endblock %}
